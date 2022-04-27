@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Kalibration, Viscosimetrs
 
-# Register your models here.
+admin.site.register(Kalibration)
+admin.site.register(Viscosimetrs)
