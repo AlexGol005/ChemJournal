@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('viscosimeters/', include('viscosimeters.urls')),
+    path('viscosityattestation/', include('viscosityattestation.urls')),
+
 ]
