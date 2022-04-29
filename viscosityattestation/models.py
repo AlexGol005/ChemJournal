@@ -6,9 +6,13 @@ class ViscosityMJL(models.Model):
     date = models.DateField('Дата', default=timezone.now)
     name = models.CharField('Наименование', max_length=100)
     lot = models.CharField('Партия', max_length=100)
+    ndocumentoptional = (('ГОСТ 33', 'ГОСТ 33'),
+                         ('МИ-01', 'МИ-01'),
+                         ('оценка', 'оценка вязкости'))
+    ndocument = models.CharField('Метод испытаний', max_length=100, choices=ndocumentoptional, default='МИ-01')
     temperature = models.DecimalField('Температура, ℃', max_digits=5, decimal_places=2)
-    termostatition = models.BooleanField('Термостатировано не менее 20 минут')
-    temperatureCheck = models.BooleanField('Температура контролируется внешним поверенным термометром')
+    termostatition = models.BooleanField(verbose_name='Термостатировано не менее 20 минут', blank=False)
+    temperatureCheck = models.BooleanField(verbose_name='Температура контролируется внешним поверенным термометром', blank=False)
     termometer = models.CharField('Внутренний номер термометра', max_length=10)
     ViscosimeterNumber1 = models.CharField('Заводской номер вискозиметра № 1', max_length=10)
     Konstant1 = models.FloatField('Константа вискозиметра № 1')
@@ -22,7 +26,11 @@ class ViscosityMJL(models.Model):
     plustimesek12 = models.DecimalField('Время истечения 12, + cек', max_digits=5, decimal_places=2)
     plustimemin22 = models.FloatField('Время истечения 22, + мин')
     plustimesek22 = models.DecimalField('Время истечения 22, + cек', max_digits=5, decimal_places=2)
-    performer = models.ForeignKey(User, on_delete=models.PROTECT)
+    performer = models.ForeignKey(User, verbose_name='Исполнитель', on_delete=models.PROTECT)
 
     def __str__(self):
-        return f'проба: {self.name}, п.: {self.lot}, t℃: {self.temperature}, дата: {self.date}'
+        return f' {self.name}  п.{self.lot};  {self.temperature} t ℃;   {self.date}'
+
+    class Meta:
+        verbose_name = 'Измерение кинематической вязкости'
+        verbose_name_plural = 'Измерения кинематической вязкости'

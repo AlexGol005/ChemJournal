@@ -2,22 +2,13 @@ from django.shortcuts import render
 from django.http  import HttpResponse
 
 def home(request):
-    return HttpResponse('<h3>Журналы приготовления и аттестации</h3>')
-
-def production(request):
-    return HttpResponse('<h3>Журналы приготовления</h3>')
-
-def attestation(request):
-    return HttpResponse('<h3>Журналы аттестации</h3>')
-
-def VG(request):
-    table = [
+    news = [
         {
-        'date': 1,
-        'Наименование': 'СО',
-        'Партия': 4,
-        'Температура': 20,
-        'Термостатирование': 'да'
+            'date': 1,
+            'Наименование': 'СО',
+            'Партия': 4,
+            'Температура': 20,
+            'Термостатирование': 'да'
         },
         {
             'date': 21,
@@ -27,11 +18,14 @@ def VG(request):
             'Термостатирование': 'да',
         }
     ]
-    listg = {'table': table,
-             'title': 'Определение кинематической вязкости'
-    }
+    data = {'news': news,
+             'title': 'Лабораторные журналы'
+             }
+    return render(request, 'main/home.html', data)
 
-    return render(request, 'main/VG.html', listg)
+def production(request):
+    return HttpResponse('<h3>Журналы приготовления</h3>')
 
-def K(request):
-    return render(request, 'main/K.html')
+def attestation(request):
+    return HttpResponse('<h3>Журналы аттестации</h3>')
+
