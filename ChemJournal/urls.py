@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('main.urls')),
     path('viscosimeters/', include('viscosimeters.urls')),
     path('viscosityattestation/', include('viscosityattestation.urls')),
+    path('users/', include('users.urls')),
 
 ]

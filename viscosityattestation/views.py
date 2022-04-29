@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from django.http  import HttpResponse
+from django.http import HttpResponse
+from .models import ViscosityMJL
 
 def viscositymeasurement(request):
-    return HttpResponse('<h3>Определение кинематической вязкости</h3>')
+    data = {'title': 'Определение кинематической вязкости',
+            'table': ViscosityMJL.objects.all()
+            }
+    return render(request, 'viscosityattestation/JL.html', data)
