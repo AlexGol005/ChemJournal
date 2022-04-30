@@ -21,6 +21,5 @@ def register(request):
         {
             'title': 'Страница регистрации',
             'form': form
-        }
-    )
+        } )
 
