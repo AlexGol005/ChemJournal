@@ -22,5 +22,4 @@ urlpatterns = [
     path('', include('viscosimeters.urls')),
     path('', include('viscosityattestation.urls')),
     path('', include('users.urls')),
-
 ]
